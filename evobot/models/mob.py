@@ -4,6 +4,8 @@ from . import Entity
 
 
 class Mob(Entity):
+    _key = 'entity.mob'
+
     mob_type = 'mob'  # Define the mob type, you can choose them
 
     def move(self, oid: int, direction: str) -> bool:
@@ -20,5 +22,19 @@ class Mob(Entity):
             'SE', # South East          / | \
             'S',  # South            SW   S   SE
             'SW', # South West
+            'W', # West
           }
         """
+        directions = {
+            'N': (0, 1),
+            'E': (1, 0),
+            'S': (0, -1),
+            'W': (-1, 0),
+        }
+        if direction not in ['N', 'NE', 'E', 'SE', 'S', 'SW', 'W', 'NW']:
+            return False
+        for c in direction:
+            dir = directions[c]
+            self.pos_x += dir[0]
+            self.pos_y += dir[1]
+        return True
