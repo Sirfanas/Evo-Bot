@@ -1,5 +1,7 @@
 # coding: utf-8
 
+__author__ = 'Sirfanas <Romain Fauquet>'
+
 from models import Entity, Mob
 from storage import Cache, get_cached_object
 

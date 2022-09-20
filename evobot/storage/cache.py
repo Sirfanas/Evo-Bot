@@ -1,5 +1,7 @@
 # coding: utf-8
 
+__author__ = 'Sirfanas <Romain Fauquet>'
+
 class Cache:
     """
         Used to quickly store data, will be bridged with a real database.
