@@ -13,21 +13,24 @@ class Entity(CachedObject):
     dp_name = 'entity'  # Display name
 
     @property
-    def pos(self):
+    def pos(self) -> tuple:
         return self.pos_x, self.pos_y
 
     @pos.setter
-    def pos(self, new_pos):
+    def pos(self, new_pos: tuple):
         self.pos_x = new_pos[0]
         self.pos_y = new_pos[1]
 
-    def _default_vals(self):
+    def _default_vals(self) -> dict:
         default = super()._default_vals()
         for attr in self._get_attributes():
             default.update({attr: getattr(self, attr)})
         return default
 
-    def _get_attributes(self):
+    def _get_attributes(self) -> list:
+        """
+            Return all available attribute of given entity
+        """
         attrs = dir(self)
         def is_attribute(a):
             is_attr = not callable(getattr(self, a))
@@ -35,10 +38,11 @@ class Entity(CachedObject):
             return is_attr
         return list(filter(is_attribute, attrs))
 
-    def _get_debug(self):
+    def _get_debug(self) -> dict:
         res = dict()
         for attr in self._get_attributes():
             res[attr] = getattr(self, attr)
         return res
 
+# Initialize Entity cached object
 get_cached_object(Entity._key, cached_class=Entity)
