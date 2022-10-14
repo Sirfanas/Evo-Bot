@@ -4,4 +4,5 @@ WORKDIR /usr/src/app
 
 RUN pip install --no-cache-dir \
   Flask \
-  PyMongo
+  PyMongo \
+  schedule

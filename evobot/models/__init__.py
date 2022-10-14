@@ -4,3 +4,4 @@ __author__ = 'Sirfanas <Romain Fauquet>'
 
 from .entity import Entity
 from .mob import Mob
+from .users import Users

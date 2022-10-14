@@ -2,7 +2,7 @@
 
 __author__ = 'Sirfanas <Romain Fauquet>'
 
-from storage import CachedObject, get_cached_object
+from evobot.storage import CachedObject, init_cached_object
 
 
 class Entity(CachedObject):
@@ -21,28 +21,6 @@ class Entity(CachedObject):
         self.pos_x = new_pos[0]
         self.pos_y = new_pos[1]
 
-    def _default_vals(self) -> dict:
-        default = super()._default_vals()
-        for attr in self._get_attributes():
-            default.update({attr: getattr(self, attr)})
-        return default
-
-    def _get_attributes(self) -> list:
-        """
-            Return all available attribute of given entity
-        """
-        attrs = dir(self)
-        def is_attribute(a):
-            is_attr = not callable(getattr(self, a))
-            is_attr = is_attr and a[0] != '_'
-            return is_attr
-        return list(filter(is_attribute, attrs))
-
-    def _get_debug(self) -> dict:
-        res = dict()
-        for attr in self._get_attributes():
-            res[attr] = getattr(self, attr)
-        return res
 
 # Initialize Entity cached object
-get_cached_object(Entity._key, cached_class=Entity)
+init_cached_object(Entity._key, cached_class=Entity)

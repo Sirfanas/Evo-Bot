@@ -3,6 +3,7 @@
 __author__ = 'Sirfanas <Romain Fauquet>'
 
 from . import Entity
+from evobot.storage import init_cached_object
 
 
 class Mob(Entity):
@@ -40,3 +41,7 @@ class Mob(Entity):
             self.pos_x += dir[0]
             self.pos_y += dir[1]
         return True
+
+
+# Initialize Entity cached object
+init_cached_object(Mob._key, cached_class=Mob)

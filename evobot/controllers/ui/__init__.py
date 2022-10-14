@@ -2,4 +2,5 @@
 
 __author__ = 'Sirfanas <Romain Fauquet>'
 
-from . import models
+from . import index
+from . import auth
